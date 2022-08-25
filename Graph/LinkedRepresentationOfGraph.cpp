@@ -15,13 +15,13 @@ void insert_in_beginning(int value, Node** start);
 void insert_in_ending(int value, Node** start);
 void insert_in_specific_position(int value, Node * start);
 void linked_list_print(Node * start);
-
+Node * start[10];
 void dfs(Node *n){
     if(vis[n->data])return;
     else if(n == NULL)return;
     vis[n->data] = true;
     cout<<n->data<<" ";
-    dfs(n -> next_pointer);
+    dfs(start[n->data]);
     return;
 }
 
@@ -32,13 +32,13 @@ int main()
     int edges = 0, nodes = 0;
     
     cin>>nodes>>edges;
-    Node * start[nodes];
+    
 
     memset(vis, 0, sizeof(vis));
 
     for(int i=0;i<nodes;i++) {
         start[i] = NULL;
-        insert_in_ending(i, &start[i]);
+        
     }
 
     for(int i = 0; i<edges; i++){
