@@ -9,12 +9,17 @@ typedef struct node Node;
 
 Node * create_node();
 Node * insert_in_ending(Node *start, int value);
+int  search(Node *start, int item);
 void print_list(Node *start);
+Node* sort(Node* start);
 
 int main(){
     Node *start = NULL;
-    int arr[] = {6,16,26,35,53};
-    //for(int i=0;i<5;i++)start = insert_in_ending(start, arr[i]);
+    int arr[] = {26,35,16,6,53};
+    for(int i=0;i<5;i++)start = insert_in_ending(start, arr[i]);
+
+    //cout<<search(start, 7)<<endl;
+    sort(start);
     
     print_list(start);
 
@@ -45,6 +50,19 @@ Node * insert_in_ending(Node *start, int value){
     
     return start;
 }
+int search(Node *start, int item){
+    Node *current_node = start;
+    int cnt = 0;
+    while(current_node->next_pointer != NULL){
+        if(current_node->data == item){
+            return cnt;
+        }
+        else current_node = current_node->next_pointer;
+        cnt++;
+    }
+    return -1;
+
+}
 
 void print_list(Node *start){
     
@@ -55,4 +73,22 @@ void print_list(Node *start){
         current_node = current_node->next_pointer;
     }
     return;
+}
+Node* sort(Node* start){
+    for(Node* i=start; i!=NULL; i=i->next_pointer){
+        for(Node* j=i->next_pointer; j!=NULL; j=j->next_pointer){
+            if(j->data < i->data){
+                 Node *current_node1 = start;
+                 while(current_node1->next_pointer != i){
+                current_node1 = current_node1->next_pointer;
+                }
+                Node *current_node2 = start;
+                 while(current_node2->next_pointer != j){
+                current_node2 = current_node2->next_pointer;
+                }
+                current_node1->next_pointer = j;
+                current_node2->next_pointer = i; 
+            }
+        }
+    }
 }

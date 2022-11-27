@@ -17,6 +17,7 @@ int main(){
     push( 53);
     print();
     pop();
+    
     print();
 }
 
@@ -30,7 +31,7 @@ void push(int item){
     return;
 }
 void pop(){
-    if(Top==0){
+    if(Top==-1){
         cout<<"Underflow"<<endl;
         return;
     }

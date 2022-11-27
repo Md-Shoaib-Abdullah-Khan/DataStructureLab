@@ -1,39 +1,35 @@
-#include<bits/stdc++.h>
-#include<algorithm>
+#include<iostream>
 #include<vector>
-#include<math.h>
 using namespace std;
-
-#define inf 1000000000
-
 int n;
-vector<vector<int>>matrix;
 
+int path[100][100];
 
+void warshal(){
+
+    for(int k=1; k<=n; k++)
+        for(int i=1; i<=n; i++)
+            for(int j=1; j<=n; j++)
+                    path[i][j] = min(path[i][j] , (path[i][k] + path[k][j]));
+}
 int main(){
-    cin>>n;
-    int path[n][n];
-
-    for(int i=0; i<n; i++){
-       for(int j=0; j<n; j++)
+    int m;
+    cin>>n>>m;
+for(int i=1; i<=n; i++){
+       for(int j=0; j<=n; j++)
         {
-            path[i][j] = inf;
+            path[i][j] = 100000;
         }
     }
-    for(int i=0; i<n; i++){
-        int a,b,value;
-        cin>>a>>b>>value;
-        if(!value)path[a][b] = value;
+    for(int i=0; i<m; i++){
+        int a,b,c;
+        cin>>a>>b>>c;
+        path[a][b] = c;
     }
-
-    for(int k=0; k<n; k++)
-        for(int i=0; i<n; i++)
-            for(int j=0; j<n; j++)
-                    path[i][j] = min(path[i][j] , path[i][k] + path[k][j]);
-
-    for(int i=0; i<n; i++)
+   warshal();
+    for(int i=1; i<=n; i++)
         {
-            for(int j=0; j<n; j++)
+            for(int j=1; j<=n; j++)
             {
                 cout<<path[i][j]<<" ";
             }

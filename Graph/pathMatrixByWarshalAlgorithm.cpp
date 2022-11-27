@@ -2,35 +2,34 @@
 #include<vector>
 using namespace std;
 int n;
-vector<vector<int>>matrix;
-vector<vector<int>>path;
+
+int path[100][100];
 
 void warshal(){
 
-    for(int k=0; k<n; k++)
-        for(int i=0; i<n; i++)
-            for(int j=0; j<n; j++)
+    for(int k=1; k<=n; k++)
+        for(int i=1; i<=n; i++)
+            for(int j=1; j<=n; j++)
                     path[i][j] = path[i][j] | (path[i][k] & path[k][j]);
 }
 int main(){
-    cin>>n;
-for(int i=0; i<n; i++){
-       for(int j=0; j<n; j++)
+    int m;
+    cin>>n>>m;
+for(int i=1; i<=n; i++){
+       for(int j=1; j<=n; j++)
         {
-           matrix[i][j] = 0;
             path[i][j] = 0;
         }
     }
-    for(int i=0; i<n; i++){
+    for(int i=0; i<m; i++){
         int a,b;
         cin>>a>>b;
-        matrix[a][b] = 1;
         path[a][b] = 1;
     }
     warshal();
-    for(int i=0; i<n; i++)
+    for(int i=1; i<=n; i++)
         {
-            for(int j=0; j<n; j++)
+            for(int j=1; j<=n; j++)
             {
                 cout<<path[i][j]<<" ";
             }
